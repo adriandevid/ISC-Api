@@ -4,11 +4,10 @@ using System.Text;
 
 namespace ISC.Api.Domain.Dtos
 {
-    public class UsuarioRegisterDto
+    public class UsuarioUpdateDto
     {
         public string Login { get; set; }
         public string Senha { get; set; }
         public int TipoUsuarioId { get; set; }
-        public EmpresaDto Empresa { get; set; }
     }
 }

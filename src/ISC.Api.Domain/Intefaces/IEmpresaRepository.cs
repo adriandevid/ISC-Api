@@ -10,6 +10,6 @@ namespace ISC.Api.Domain.Intefaces
     public interface IEmpresaRepository : IRepository<Empresa>
     {
         new Task<Empresa> GetByIdAsync(long id);
-        Task<bool> verificarDuplicidade(string login);
+        Task<bool> verificarDuplicidade(string cnpj, string nome);
     }
 }

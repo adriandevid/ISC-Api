@@ -1,4 +1,6 @@
 using AutoMapper;
+using ISC.Api.Application.Interfaces;
+using ISC.Api.Application.Queries;
 using ISC.Api.Domain.Intefaces;
 using ISC.Api.Domain.Intefaces.Base;
 using ISC.Api.Infra.Data.Context;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -58,9 +61,17 @@ namespace ISC.Api.Web
             services.AddScoped<DbContext, ISCDbContext>();
             services.AddControllers();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUsuarioQuerie, UsuarioQuerie>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+
+            services.AddMvc().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

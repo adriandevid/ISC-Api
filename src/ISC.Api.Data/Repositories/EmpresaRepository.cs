@@ -20,7 +20,7 @@ namespace ISC.Api.Infra.Data.Repositories
         public async new Task<Empresa> GetByIdAsync(long id)
             => await _context.Empresas.FirstOrDefaultAsync(x => x.Id == id);
 
-        public Task<bool> verificarDuplicidade(string login)
+        public Task<bool> verificarDuplicidade(string cnpj, string nome)
         {
             throw new NotImplementedException();
         }

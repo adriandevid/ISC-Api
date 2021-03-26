@@ -14,6 +14,8 @@ namespace ISC.Api.Web.Mapper
         {
             CreateMap<Usuario, UsuarioLoginDto>().ReverseMap();
             CreateMap<Usuario, UsuarioRegisterDto>().ReverseMap();
+            CreateMap<Usuario, UsuarioUpdateDto>().ReverseMap();
+            CreateMap<Empresa, EmpresaDto>().ReverseMap();
         }
     }
 }

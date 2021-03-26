@@ -17,7 +17,7 @@ namespace ISC.Api.Infra.Data.EntityConfig
             builder.Property(x => x.Id).HasColumnName("cd_empresa_pk").ValueGeneratedOnAdd();
 
             builder.Property(x => x.Nome).HasColumnName("nm_empresa");
-            builder.Property(x => x.Cnpj).HasColumnName("nm_cpnj");
+            builder.Property(x => x.Cnpj).HasColumnName("nm_cnpj");
 
             builder.HasMany(x => x.Produtos).WithOne(x => x.Empresa).HasForeignKey(x => x.EmpresaId);
         }
