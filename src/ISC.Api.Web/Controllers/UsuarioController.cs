@@ -3,6 +3,7 @@ using ISC.Api.Domain.Dtos;
 using ISC.Api.Domain.Entitys;
 using ISC.Api.Web.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -24,15 +25,23 @@ namespace ISC.Api.Web.Controllers
             _queriesUser = UsuarioQuerie;
         }
 
+        /// <summary>
+        /// Lista todos os usuarios
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("ListarUsuarios/")]
         [Authorize(Roles = "Administrador")]
         public IEnumerable<Usuario> ListarUsuarios() {
             return _queriesUser.ListarUsuarios();
         }
 
+        /// <summary>
+        /// Cadastra um novo usuario
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("Cadastrar/")]
         [AllowAnonymous]
-        public async Task<IActionResult> Cadastrar(UsuarioRegisterDto user) {
+        public async Task<IActionResult> Cadastrar([FromBody]UsuarioRegisterDto user) {
             try
             {
                 var registerUser = await _queriesUser.CadastrarUsuario(user);
@@ -49,9 +58,15 @@ namespace ISC.Api.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// Faz o login do usuario
+        /// </summary>
+        /// <returns>Token de usuario com seus dados confirmados</returns>
         [HttpGet("Login/")]
         [AllowAnonymous]
-        public IActionResult Login(UsuarioLoginDto user) {
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(200, Type = typeof(string))]
+        public IActionResult Login([FromQuery] UsuarioLoginDto user) {
             try {
                 var UserLogin = _queriesUser.VerificarUsuario(user.Login, user.Senha);
                 if (UserLogin != null)
