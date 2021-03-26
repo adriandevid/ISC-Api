@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ISC.Api.Domain.Entitys.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ISC.Api.Domain.Intefaces.Base
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : Entity
     {
         void Delete(TEntity entity);
         void Delete(long id);

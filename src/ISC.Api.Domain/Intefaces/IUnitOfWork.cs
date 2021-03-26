@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ISC.Api.Domain.Intefaces
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
+        Task<bool> Commit();
     }
 }

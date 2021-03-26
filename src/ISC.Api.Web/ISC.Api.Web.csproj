@@ -4,5 +4,20 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="3.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ISC.Api.Data\ISC.Api.Infra.Data.csproj" />
+    <ProjectReference Include="..\ISC.Api.Domain\ISC.Api.Domain.csproj" />
+  </ItemGroup>
+
 
 </Project>

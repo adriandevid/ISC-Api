@@ -1,17 +1,23 @@
-﻿using System;
+﻿
+
+using ISC.Api.Domain.Dtos;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace ISC.Api.Web.Services
 {
     public static class JwtService
     {
-        public static string GenerateToken(UsuarioDto user, IConfiguration Configuration)
+        public static string GenerateToken(UsuarioLoginDto user, IConfiguration Configuration)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Configuration["JwtToken:Token"]);
-            var Role = GetClaimTypeUser(user.TipoUsuario);
+            var Role = GetClaimTypeUser(user.TipoUsuarioId);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -25,6 +31,23 @@ namespace ISC.Api.Web.Services
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        private static string GetClaimTypeUser(int type)
+        {
+            switch (type)
+            {
+                case 1:
+                    return "Administrador";
+                case 2:
+                    return "Empresa";
+                case 3:
+                    return "Instituto";
+                case 4:
+                    return "Aluno";
+                default:
+                    return "N";
+            }
         }
     }
 }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ISC.Api.Domain.Intefaces
 {
-    public interface IProdutoRepository : IRepository<Produto>
+    public interface IEmpresaRepository : IRepository<Empresa>
     {
-        new Task<Produto> GetByIdAsync(long id);
-        Task<bool> verificarDuplicidade(string nome, decimal valor);
+        new Task<Empresa> GetByIdAsync(long id);
+        Task<bool> verificarDuplicidade(string login);
     }
 }
