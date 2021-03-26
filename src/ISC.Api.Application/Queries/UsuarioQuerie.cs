@@ -5,6 +5,7 @@ using ISC.Api.Domain.Entitys;
 using ISC.Api.Domain.Intefaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,6 +57,22 @@ namespace ISC.Api.Application.Queries
 
             _usuarioRepository.Update(Usuario);
             await _unit.Commit();
+        }
+
+        public Usuario VerificarUsuario(string Login, string senha)
+        {
+            var login = _usuarioRepository.Get().Where(x => x.Login == Login && x.Senha == senha) != null;
+            if (login)
+            {
+                return _usuarioRepository.Get().Where(x => x.Login == Login && x.Senha == senha).FirstOrDefault();
+            }
+            else {
+                return null;
+            }
+        }
+
+        public IEnumerable<Usuario> ListarUsuarios() {
+            return _usuarioRepository.Get().AsEnumerable();
         }
     }
 }

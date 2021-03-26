@@ -12,6 +12,8 @@ namespace ISC.Api.Application.Interfaces
         Task<Usuario> GetUsuarioById(long id);
         Task<bool> CadastrarUsuario(UsuarioRegisterDto user);
         Task<bool> RemoverUsuario(long id);
+        Usuario VerificarUsuario(string Login, string senha);
+        IEnumerable<Usuario> ListarUsuarios();
         void Update(UsuarioUpdateDto usr);
     }
 }

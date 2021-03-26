@@ -8,6 +8,5 @@ namespace ISC.Api.Domain.Dtos
     {
         public string Login { get; set; }
         public string Senha { get; set; }
-        public int TipoUsuarioId { get; set; }
     }
 }

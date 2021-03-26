@@ -1,6 +1,7 @@
 ﻿
 
 using ISC.Api.Domain.Dtos;
+using ISC.Api.Domain.Entitys;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -13,7 +14,7 @@ namespace ISC.Api.Web.Services
 {
     public static class JwtService
     {
-        public static string GenerateToken(UsuarioLoginDto user, IConfiguration Configuration)
+        public static string GenerateToken(Usuario user, IConfiguration Configuration)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Configuration["JwtToken:Token"]);
@@ -40,11 +41,7 @@ namespace ISC.Api.Web.Services
                 case 1:
                     return "Administrador";
                 case 2:
-                    return "Empresa";
-                case 3:
-                    return "Instituto";
-                case 4:
-                    return "Aluno";
+                    return "Publico";
                 default:
                     return "N";
             }
